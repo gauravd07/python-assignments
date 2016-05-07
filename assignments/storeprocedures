@@ -1,0 +1,37 @@
+// Get users
+USE `my_doublehorn`;
+DROP procedure IF EXISTS `sp_GetUsers`;
+
+DELIMITER $$
+USE `my_doublehorn`$$
+CREATE PROCEDURE `sp_GetAllUsers` (
+)
+BEGIN
+    select * from user;
+END$$
+
+DELIMITER ;
+
+
+// Add users
+USE `my_doublehorn`;
+DROP procedure IF EXISTS `my_doublehorn`.`sp_addUser`;
+
+DELIMITER $$
+USE `my_doublehorn`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addUser`(
+    IN p_user_name varchar(45),
+    IN p_user_id int(11)
+)
+BEGIN
+    insert into user(
+        user_id,
+        user_name
+    )
+    values
+    (
+	p_user_id,
+        p_user_name
+    );
+END$$
+DELIMITER ;
